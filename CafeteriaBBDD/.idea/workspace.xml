@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e8e4594-3fa0-4921-b9ca-c2663a075dd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/Principal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/base/enums/CategoriaProducto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/base/enums/TipoPago.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cafeteria_db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,16 +40,17 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="255" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="252" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CafeteriaMVC/CafeteriaMVC" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Koala\Documents\GitHub\CafeteriaBBDD\CafeteriaBBDD" />
       <recent name="C:\Users\Koala\Documents\GitHub\CafeteriaBBDD\CafeteriaBBDD\libs" />
     </key>
   </component>
@@ -85,7 +81,7 @@
       <workItem from="1766430004832" duration="3093000" />
       <workItem from="1767004431468" duration="1261000" />
       <workItem from="1767376289030" duration="604000" />
-      <workItem from="1767795756245" duration="1101000" />
+      <workItem from="1767795756245" duration="7853000" />
     </task>
     <servers />
   </component>
