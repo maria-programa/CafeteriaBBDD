@@ -7,7 +7,7 @@ id_cliente int primary key auto_increment,
 nombre varchar(50) not null,
 apellidos varchar(150),
 email varchar(150) not null unique,
-fecha_registro date not null,
+fecha_registro date not null default (current_date),
 telefono varchar(20)
 );
 --
@@ -32,8 +32,9 @@ create table if not exists pedido (
 id_pedido int primary key auto_increment,
 id_cliente int not null,
 id_empleado int not null,
-fecha_pedido date not null,
+fecha_pedido date not null default (current_date),
 total decimal(10, 2) not null,
+tipo_pago varchar(30) not null,
 foreign key (id_cliente) references cliente(id_cliente),
 foreign key (id_empleado) references empleado(id_empleado)
 );
