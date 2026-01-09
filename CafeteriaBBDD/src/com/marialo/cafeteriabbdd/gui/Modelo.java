@@ -1,4 +1,4 @@
-package com.marialo.cafeteriabbdd;
+package com.marialo.cafeteriabbdd.gui;
 
 import java.io.*;
 import java.sql.*;

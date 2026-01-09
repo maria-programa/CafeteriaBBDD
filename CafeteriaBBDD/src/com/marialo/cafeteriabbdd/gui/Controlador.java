@@ -1,6 +1,4 @@
-package com.marialo.cafeteriabbdd;
-
-import com.marialo.cafeteriabbdd.gui.Vista;
+package com.marialo.cafeteriabbdd.gui;
 
 public class Controlador {
     private Modelo modelo;

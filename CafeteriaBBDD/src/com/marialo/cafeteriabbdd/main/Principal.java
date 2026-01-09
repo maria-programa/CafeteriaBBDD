@@ -1,7 +1,7 @@
 package com.marialo.cafeteriabbdd.main;
 
-import com.marialo.cafeteriabbdd.Controlador;
-import com.marialo.cafeteriabbdd.Modelo;
+import com.marialo.cafeteriabbdd.gui.Controlador;
+import com.marialo.cafeteriabbdd.gui.Modelo;
 import com.marialo.cafeteriabbdd.gui.Vista;
 
 public class Principal {
