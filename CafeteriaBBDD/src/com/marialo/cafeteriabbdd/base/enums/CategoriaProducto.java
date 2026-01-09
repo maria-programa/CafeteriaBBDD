@@ -5,8 +5,7 @@ public enum CategoriaProducto {
     BEBIDA_FRIA("Bebida Fría"),
     COMIDA("Comida"),
     POSTRE("Postre"),
-    BOLLERIA("Bollería"),
-    TAPA("Tapa");
+    BOLLERIA("Bollería");
 
     private final String nombre;
 

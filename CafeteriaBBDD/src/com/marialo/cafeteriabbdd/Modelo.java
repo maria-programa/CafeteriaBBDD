@@ -77,8 +77,8 @@ public class Modelo {
     }
 
     // ========== CLIENTES ==========
-    void insertarCliente(String nombre, String apellidos, String email, LocalDate fechaRegistro, String telefono) {
-        String sql = "INSERT INTO cliente (nombre, apellidos, email, fecha_registro, telefono) VALUES (?, ?, ?, ?, ?)";
+    void insertarCliente(String nombre, String apellidos, String email, String telefono) {
+        String sql = "INSERT INTO cliente (nombre, apellidos, email, telefono) VALUES (?, ?, ?, ?)";
         PreparedStatement sentencia = null;
 
         try {
@@ -86,8 +86,7 @@ public class Modelo {
             sentencia.setString(1, nombre);
             sentencia.setString(2, apellidos);
             sentencia.setString(3, email);
-            sentencia.setDate(4, Date.valueOf(fechaRegistro));
-            sentencia.setString(5, telefono);
+            sentencia.setString(4, telefono);
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,8 +101,8 @@ public class Modelo {
         }
     }
 
-    void modificarCliente(int id, String nombre, String apellidos, String email, LocalDate fechaRegistro, String telefono) {
-        String sql = "UPDATE cliente SET nombre = ?, apellidos = ?, email = ?, fecha_registro = ?, telefono = ? WHERE id_cliente = ?";
+    void modificarCliente(int id, String nombre, String apellidos, String email, String telefono) {
+        String sql = "UPDATE cliente SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id_cliente = ?";
         PreparedStatement sentencia = null;
 
         try {
@@ -111,9 +110,8 @@ public class Modelo {
             sentencia.setString(1, nombre);
             sentencia.setString(2, apellidos);
             sentencia.setString(3, email);
-            sentencia.setDate(4, Date.valueOf(fechaRegistro));
-            sentencia.setString(5, telefono);
-            sentencia.setInt(6, id);
+            sentencia.setString(4, telefono);
+            sentencia.setInt(5, id);
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
