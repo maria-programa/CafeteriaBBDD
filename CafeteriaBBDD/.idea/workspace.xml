@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e8e4594-3fa0-4921-b9ca-c2663a075dd5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/main/Principal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/util/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +103,7 @@
       <workItem from="1767376289030" duration="604000" />
       <workItem from="1767795756245" duration="7853000" />
       <workItem from="1767884189856" duration="8693000" />
-      <workItem from="1767970968346" duration="2753000" />
+      <workItem from="1767970968346" duration="3127000" />
     </task>
     <servers />
   </component>
