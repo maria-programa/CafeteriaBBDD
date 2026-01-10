@@ -20,6 +20,9 @@ public class Vista extends JFrame {
     JComboBox comboPago;
     JTable pedidosTabla;
     JButton empezarPedidoButton;
+    JLabel empleadoComboLbl;
+    JLabel clienteComboLbl;
+    JLabel pagoLbl;
 
     // ======== PRODUCTOS ========
     JPanel JPanelProducto;
@@ -31,6 +34,10 @@ public class Vista extends JFrame {
     JButton annadirProductoButton;
     JButton modificarProductoButton;
     JButton eliminarProductoButton;
+    JLabel codigoProductoLbl;
+    JLabel categoriaLbl;
+    JLabel nombreProductoLbl;
+    JLabel precioLbl;
 
     // ======== EMPLEADOS ========
     JPanel JPanelEmpleado;
@@ -43,6 +50,11 @@ public class Vista extends JFrame {
     JButton annadirEmpleadoButton;
     JButton modificarEmpleadoButton;
     JButton eliminarEmpleadoButton;
+    JLabel codigoEmpleadoLbl;
+    JLabel nombreEmpleadoLbl;
+    JLabel apellidosEmpleadoLbl;
+    JLabel dniLbl;
+    JLabel fechaContratacionLbl;
 
     // ======== CLIENTES ========
     JPanel JPanelCliente;
@@ -54,6 +66,8 @@ public class Vista extends JFrame {
     JButton annadirClienteButton;
     JButton modificarClienteButton;
     JButton eliminarClienteButton;
+    JLabel nombreClienteLbl;
+    JLabel emailClienteLbl;
 
     // ======== TABLAS ========
     DefaultTableModel dtmPedidos;

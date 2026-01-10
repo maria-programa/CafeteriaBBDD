@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e8e4594-3fa0-4921-b9ca-c2663a075dd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/util/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/base/enums/TipoPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/base/enums/TipoPago.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +44,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="162" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="361" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -103,7 +107,11 @@
       <workItem from="1767376289030" duration="604000" />
       <workItem from="1767795756245" duration="7853000" />
       <workItem from="1767884189856" duration="8693000" />
-      <workItem from="1767970968346" duration="3127000" />
+      <workItem from="1767970968346" duration="5398000" />
+      <workItem from="1767979680623" duration="242000" />
+      <workItem from="1767979963238" duration="37000" />
+      <workItem from="1767983178158" duration="595000" />
+      <workItem from="1768043250210" duration="6870000" />
     </task>
     <servers />
   </component>

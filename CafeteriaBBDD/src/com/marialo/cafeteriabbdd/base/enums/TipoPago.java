@@ -1,10 +1,9 @@
 package com.marialo.cafeteriabbdd.base.enums;
 
 public enum TipoPago {
-    EFECTIVO("Efectivo"),
     TARJETA("Tarjeta"),
-    BIZUM("Bizum"),
-    VALE("Vale Regalo");
+    EFECTIVO("Efectivo"),
+    BIZUM("Bizum");
 
     private final String nombre;
 

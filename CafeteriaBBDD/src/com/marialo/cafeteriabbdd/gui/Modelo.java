@@ -32,7 +32,7 @@ public class Modelo {
 
     void conectar() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/mibase", user, password);
+            conexion = DriverManager.getConnection("jdbc:mysql://" + ip + ":3306/cafeteria_db", user, password);
         } catch (SQLException sqle) {
             try {
                 conexion = DriverManager.getConnection(
@@ -78,7 +78,7 @@ public class Modelo {
 
     // ========== CLIENTES ==========
     void insertarCliente(String nombre, String apellidos, String email, String telefono) {
-        String sql = "INSERT INTO cliente (nombre, apellidos, email, telefono) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO cliente (nombre, apellidos, email, telefono) VALUES (?, ?, ?, ?);";
         PreparedStatement sentencia = null;
 
         try {
@@ -102,7 +102,7 @@ public class Modelo {
     }
 
     void modificarCliente(int id, String nombre, String apellidos, String email, String telefono) {
-        String sql = "UPDATE cliente SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id_cliente = ?";
+        String sql = "UPDATE cliente SET nombre = ?, apellidos = ?, email = ?, telefono = ? WHERE id_cliente = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -127,7 +127,7 @@ public class Modelo {
     }
 
     void eliminarCliente(int id) {
-        String sql = "DELETE FROM cliente WHERE id_cliente = ?";
+        String sql = "DELETE FROM cliente WHERE id_cliente = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -153,14 +153,14 @@ public class Modelo {
                 "email as 'Email', " +
                 "fecha_registro as 'Fecha Registro', " +
                 "telefono as 'Teléfono' " +
-                "FROM cliente ORDER BY apellidos, nombre";
+                "FROM cliente;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
 
     // ========== EMPLEADOS ==========
     void insertarEmpleado(String codigoEmpleado, String nombre, String apellidos, String dni, LocalDate fechaContratacion) {
-        String sql = "INSERT INTO empleado (codigo_empleado, nombre, apellidos, dni, fecha_contratacion) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO empleado (codigo_empleado, nombre, apellidos, dni, fecha_contratacion) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement sentencia = null;
 
         try {
@@ -185,7 +185,7 @@ public class Modelo {
     }
 
     void modificarEmpleado(int id, String codigoEmpleado, String nombre, String apellidos, String dni, LocalDate fechaContratacion) {
-        String sql = "UPDATE empleado SET codigo_empleado = ?, nombre = ?, apellidos = ?, dni = ?, fecha_contratacion = ? WHERE id_empleado = ?";
+        String sql = "UPDATE empleado SET codigo_empleado = ?, nombre = ?, apellidos = ?, dni = ?, fecha_contratacion = ? WHERE id_empleado = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -211,7 +211,7 @@ public class Modelo {
     }
 
     void eliminarEmpleado(int id) {
-        String sql = "DELETE FROM empleado WHERE id_empleado = ?";
+        String sql = "DELETE FROM empleado WHERE id_empleado = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -237,14 +237,14 @@ public class Modelo {
                 "apellidos as 'Apellidos', " +
                 "dni as 'DNI', " +
                 "fecha_contratacion as 'Fecha Contratación' " +
-                "FROM empleado ORDER BY apellidos, nombre";
+                "FROM empleado;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
 
     // ========== PRODUCTOS ==========
     void insertarProducto(String codigo, String nombre, String categoria, double precio) {
-        String sql = "INSERT INTO producto (codigo, nombre, categoria, precio) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO producto (codigo, nombre, categoria, precio) VALUES (?, ?, ?, ?);";
         PreparedStatement sentencia = null;
 
         try {
@@ -268,7 +268,7 @@ public class Modelo {
     }
 
     void modificarProducto(int id, String codigo, String nombre, String categoria, double precio) {
-        String sql = "UPDATE producto SET codigo = ?, nombre = ?, categoria = ?, precio = ? WHERE id_producto = ?";
+        String sql = "UPDATE producto SET codigo = ?, nombre = ?, categoria = ?, precio = ? WHERE id_producto = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -293,7 +293,7 @@ public class Modelo {
     }
 
     void eliminarProducto(int id) {
-        String sql = "DELETE FROM producto WHERE id_producto = ?";
+        String sql = "DELETE FROM producto WHERE id_producto = ?;";
         PreparedStatement sentencia = null;
 
         try {
@@ -318,7 +318,7 @@ public class Modelo {
                 "nombre as 'Nombre', " +
                 "categoria as 'Categoría', " +
                 "precio as 'Precio' " +
-                "FROM producto ORDER BY nombre";
+                "FROM producto;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
@@ -326,7 +326,7 @@ public class Modelo {
     //TODO
     // ========== PEDIDOS ==========
     void insertarPedido(int idCliente, int idEmpleado, LocalDate fechaPedido, double total, String tipoPago) {
-        String sql = "INSERT INTO pedido (id_cliente, id_empleado, fecha_pedido, total, tipo_pago) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pedido (id_cliente, id_empleado, fecha_pedido, total, tipo_pago) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement sentencia = null;
 
         try {
@@ -359,7 +359,7 @@ public class Modelo {
                 "FROM pedido p " +
                 "JOIN cliente c ON p.id_cliente = c.id_cliente " +
                 "JOIN empleado e ON p.id_empleado = e.id_empleado " +
-                "ORDER BY p.fecha_pedido DESC";
+                "ORDER BY p.fecha_pedido DESC;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
@@ -371,7 +371,7 @@ public class Modelo {
                 "FROM detalle_pedido d " +
                 "JOIN producto p ON d.id_producto = p.id_producto " +
                 "WHERE d.id_pedido = ? " +
-                "ORDER BY d.id_detalle";
+                "ORDER BY d.id_detalle;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, idPedido);
         return sentencia.executeQuery();

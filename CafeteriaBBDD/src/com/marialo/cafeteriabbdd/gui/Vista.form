@@ -44,7 +44,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="af37" class="javax.swing.JLabel">
+              <component id="af37" class="javax.swing.JLabel" binding="empleadoComboLbl">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -60,7 +60,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="54f77" class="javax.swing.JLabel">
+              <component id="54f77" class="javax.swing.JLabel" binding="clienteComboLbl">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -76,13 +76,13 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="2ab9f" class="javax.swing.JLabel">
+              <component id="2ab9f" class="javax.swing.JLabel" binding="pagoLbl">
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
                 <properties>
-                  <text value="Pago con:"/>
+                  <text value="Pago con*:"/>
                 </properties>
               </component>
               <component id="2d55d" class="javax.swing.JComboBox" binding="comboPago">
@@ -145,7 +145,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="91f32" class="javax.swing.JLabel">
+              <component id="91f32" class="javax.swing.JLabel" binding="codigoProductoLbl">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -163,7 +163,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="a151d" class="javax.swing.JLabel">
+              <component id="a151d" class="javax.swing.JLabel" binding="categoriaLbl">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -179,7 +179,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="7c29a" class="javax.swing.JLabel">
+              <component id="7c29a" class="javax.swing.JLabel" binding="nombreProductoLbl">
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -197,7 +197,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="e6fc5" class="javax.swing.JLabel">
+              <component id="e6fc5" class="javax.swing.JLabel" binding="precioLbl">
                 <constraints>
                   <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -292,7 +292,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="3830a" class="javax.swing.JLabel">
+              <component id="3830a" class="javax.swing.JLabel" binding="codigoEmpleadoLbl">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -310,7 +310,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="8c173" class="javax.swing.JLabel">
+              <component id="8c173" class="javax.swing.JLabel" binding="nombreEmpleadoLbl">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -328,7 +328,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="c6b8a" class="javax.swing.JLabel">
+              <component id="c6b8a" class="javax.swing.JLabel" binding="apellidosEmpleadoLbl">
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -346,7 +346,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="f52c6" class="javax.swing.JLabel">
+              <component id="f52c6" class="javax.swing.JLabel" binding="dniLbl">
                 <constraints>
                   <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -364,7 +364,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="23b2e" class="javax.swing.JLabel">
+              <component id="23b2e" class="javax.swing.JLabel" binding="fechaContratacionLbl">
                 <constraints>
                   <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -452,7 +452,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="50f37" class="javax.swing.JLabel">
+              <component id="50f37" class="javax.swing.JLabel" binding="nombreClienteLbl">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
@@ -488,7 +488,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="d62a" class="javax.swing.JLabel">
+              <component id="d62a" class="javax.swing.JLabel" binding="emailClienteLbl">
                 <constraints>
                   <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                   <forms/>
