@@ -17,11 +17,11 @@ import java.util.Vector;
 public class Controlador implements ActionListener, ItemListener, ListSelectionListener, WindowListener {
     private Modelo modelo;
     private Vista vista;
-    private DetallesPedido detalles;
 
     public Controlador(Modelo modelo, Vista vista) {
         this.modelo = modelo;
         this.vista = vista;
+        vista.cardPanelDetallesPedido.setVisible(false);
 
         modelo.conectar();
         setOptions();
@@ -33,7 +33,6 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.cardPanelProducto.setVisible(false);
         vista.cardPanelEmpleado.setVisible(false);
         vista.cardPanelCliente.setVisible(false);
-        //vista.cardPanelDetallesPedido.setVisible(false);
     }
 
     private void refrescarTodo() {
@@ -79,6 +78,8 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
         vista.empezarPedidoButton.addActionListener(listener);
         vista.empezarPedidoButton.setActionCommand("empezarPedido");
+        vista.eliminarPedidoButton.addActionListener(listener);
+        vista.eliminarPedidoButton.setActionCommand("eliminarPedido");
 
         vista.optionDialog.btnOpcionesGuardar.addActionListener(listener);
         vista.optionDialog.btnOpcionesGuardar.setActionCommand("guardarOpciones");
@@ -124,6 +125,9 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 break;
             case "empezarPedido":
                 empezarPedido();
+                break;
+            case "eliminarPedido":
+                eliminarPedido();
                 break;
             case "annadirProducto":
                 altaProducto();
@@ -211,6 +215,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
     }
 
     private void guardarPedido(DetallesPedido dialog) {
+        if (dialog.modeloTablaTemporal.getRowCount() == 0) {
+            Util.mensajeError("Has de añadir algún producto al pedido");
+            return;
+        }
         String codigoEmpleado = vista.comboEmpleado.getSelectedItem().toString().split(" ")[0];
         int idEmpleado = modelo.obtenerIDEmpleado(codigoEmpleado);
         String emailCliente = vista.comboCliente.getSelectedItem().toString().split(" - ")[1];
@@ -233,6 +241,26 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         refrescarPedidos();
     }
 
+    private void eliminarPedido() {
+        int filaSeleccionada = vista.pedidosTabla.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            Util.mensajeError("Por favor, seleccione un pedido para eliminar");
+            return;
+        }
+
+        int id_pedido = (int) vista.pedidosTabla.getValueAt(filaSeleccionada, 0);
+
+        int confirmar = Util.mensajeConfirmacion("¿Estás seguro/a de que quieres eliminar el pedido número: " + id_pedido + "?",
+                "Confirmar eliminación de producto");
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+            modelo.eliminarDetalle(id_pedido);
+            modelo.eliminarPedido(id_pedido);
+            refrescarPedidos();
+            Util.mensajeInfo("Pedido eliminado correctamente.");
+        }
+    }
+
     private void configurarTablaPedidos() {
         vista.pedidosTabla.addMouseListener(new MouseAdapter() {
             @Override
@@ -240,11 +268,24 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 if (e.getClickCount() == 2) { // Doble click
                     int fila = vista.pedidosTabla.getSelectedRow();
                     if (fila != -1) {
-                        mostrarDetallesPedido(fila);
+                        alternarDetallesPedido(fila);
                     }
                 }
             }
         });
+    }
+
+    private void alternarDetallesPedido(int filaSeleccionada) {
+        if (vista.cardPanelDetallesPedido.isVisible()) {
+            vista.cardPanelDetallesPedido.setVisible(false);
+            vista.revalidate();
+            vista.repaint();
+        } else {
+            mostrarDetallesPedido(filaSeleccionada);
+            vista.cardPanelDetallesPedido.setVisible(true);
+            vista.revalidate();
+            vista.repaint();
+        }
     }
 
     private void mostrarDetallesPedido(int filaSeleccionada) {

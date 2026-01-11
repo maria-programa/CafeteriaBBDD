@@ -127,7 +127,7 @@ public class Modelo {
     }
 
     void eliminarCliente(int id) {
-        String sql = "DELETE FROM cliente WHERE id_cliente = ?;";
+        String sql = "UPDATE cliente SET activo = FALSE WHERE id_cliente = ?";
         PreparedStatement sentencia = null;
 
         try {
@@ -153,7 +153,7 @@ public class Modelo {
                 "email as 'Email', " +
                 "fecha_registro as 'Fecha Registro', " +
                 "telefono as 'Teléfono' " +
-                "FROM cliente;";
+                "FROM cliente WHERE activo = true";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
@@ -248,7 +248,7 @@ public class Modelo {
     }
 
     void eliminarEmpleado(int id) {
-        String sql = "DELETE FROM empleado WHERE id_empleado = ?;";
+        String sql = "UPDATE empleado SET activo = FALSE WHERE id_empleado = ?";
         PreparedStatement sentencia = null;
 
         try {
@@ -274,7 +274,7 @@ public class Modelo {
                 "apellidos as 'Apellidos', " +
                 "dni as 'DNI', " +
                 "fecha_contratacion as 'Fecha Contratación' " +
-                "FROM empleado;";
+                "FROM empleado WHERE activo = true";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
@@ -367,7 +367,7 @@ public class Modelo {
     }
 
     void eliminarProducto(int id) {
-        String sql = "DELETE FROM producto WHERE id_producto = ?;";
+        String sql = "UPDATE producto SET activo = FALSE WHERE id_producto = ?";
         PreparedStatement sentencia = null;
 
         try {
@@ -392,7 +392,7 @@ public class Modelo {
                 "nombre as 'Nombre', " +
                 "categoria as 'Categoría', " +
                 "precio as 'Precio' " +
-                "FROM producto;";
+                "FROM producto WHERE activo = TRUE;";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
@@ -426,6 +426,26 @@ public class Modelo {
             sentencia.setInt(2, idEmpleado);
             sentencia.setDouble(3, total);
             sentencia.setString(4, tipoPago);
+            sentencia.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+    }
+
+    void eliminarPedido(int id) {
+        String sql = "DELETE FROM pedido WHERE id_pedido = ?;";
+        PreparedStatement sentencia = null;
+
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setInt(1, id);
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -494,6 +514,25 @@ public class Modelo {
         return sentencia.executeQuery();
     }
 
+    void eliminarDetalle(int id) {
+        String sql = "DELETE FROM detalle_pedido WHERE id_pedido = ?;";
+        PreparedStatement sentencia = null;
+
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setInt(1, id);
+            sentencia.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (sentencia != null)
+                try {
+                    sentencia.close();
+                } catch (SQLException sqle) {
+                    sqle.printStackTrace();
+                }
+        }
+    }
 
     // ========== CONFIGURACIÓN ==========
     private void getPropValues() {

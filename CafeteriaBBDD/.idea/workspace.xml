@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e8e4594-3fa0-4921-b9ca-c2663a075dd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/ProductoComboItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafeteria_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/cafeteria_db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/DetallesPedido.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/DetallesPedido.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/DetallesPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/DetallesPedido.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Vista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cafeteria_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../cafeteria_db.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +47,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="226" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="260" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CafeteriaMVC/CafeteriaMVC" />
@@ -115,7 +115,7 @@
       <workItem from="1767979963238" duration="37000" />
       <workItem from="1767983178158" duration="595000" />
       <workItem from="1768043250210" duration="7406000" />
-      <workItem from="1768125419462" duration="24560000" />
+      <workItem from="1768125419462" duration="28978000" />
     </task>
     <servers />
   </component>

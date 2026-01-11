@@ -4,9 +4,11 @@
     <rowspec value="center:d:grow"/>
     <colspec value="fill:d:grow"/>
     <constraints>
-      <xy x="20" y="20" width="629" height="452"/>
+      <xy x="20" y="20" width="903" height="452"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-2238762"/>
+    </properties>
     <border type="empty">
       <size top="8" left="16" bottom="8" right="16"/>
     </border>
@@ -18,8 +20,13 @@
           </grid>
           <forms/>
         </constraints>
-        <properties/>
-        <border type="none"/>
+        <properties>
+          <background color="-1123659"/>
+          <foreground color="-13229277"/>
+        </properties>
+        <border type="empty">
+          <size top="8" left="16" bottom="8" right="16"/>
+        </border>
         <children>
           <grid id="1019a" binding="JPanelPedido" layout-manager="FormLayout">
             <rowspec value="center:d:noGrow"/>
@@ -37,14 +44,16 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <colspec value="fill:183px:noGrow"/>
+            <colspec value="fill:209px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
             <colspec value="fill:d:grow"/>
             <constraints>
               <tabbedpane title="Pedido"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="empty">
+              <size top="8" left="16" bottom="8" right="16"/>
+            </border>
             <children>
               <component id="af37" class="javax.swing.JLabel" binding="empleadoComboLbl">
                 <constraints>
@@ -114,6 +123,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Empezar"/>
                 </properties>
               </component>
@@ -122,7 +134,9 @@
                   <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                   <forms/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <preferredSize width="453" height="100"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <scrollpane id="e7ffc">
@@ -140,6 +154,18 @@
                   </scrollpane>
                 </children>
               </grid>
+              <component id="4f634" class="javax.swing.JButton" binding="eliminarPedidoButton">
+                <constraints>
+                  <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <forms defaultalign-horz="false"/>
+                </constraints>
+                <properties>
+                  <background color="-13229277"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1123659"/>
+                  <text value="Eliminar"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="53710" binding="JPanelProducto" layout-manager="FormLayout">
@@ -162,15 +188,17 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <colspec value="fill:157px:noGrow"/>
+            <colspec value="fill:209px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:242px:noGrow"/>
-            <colspec value="fill:166px:noGrow"/>
+            <colspec value="fill:279px:noGrow"/>
+            <colspec value="fill:311px:noGrow"/>
             <constraints>
               <tabbedpane title="Producto"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="empty">
+              <size top="8" left="16" bottom="8" right="16"/>
+            </border>
             <children>
               <component id="91f32" class="javax.swing.JLabel" binding="codigoProductoLbl">
                 <constraints>
@@ -264,6 +292,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Añadir"/>
                 </properties>
               </component>
@@ -273,6 +304,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -282,6 +316,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-13229277"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1123659"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -296,7 +333,7 @@
                   <grid id="e96c3" layout-manager="FormLayout">
                     <rowspec value="center:d:noGrow"/>
                     <colspec value="fill:d:noGrow"/>
-                    <colspec value="left:4dlu:noGrow"/>
+                    <colspec value="left:25dlu:noGrow"/>
                     <colspec value="fill:max(d;4px):noGrow"/>
                     <constraints>
                       <card name="Card1"/>
@@ -310,6 +347,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-8037541"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1"/>
                           <text value="Aceptar"/>
                         </properties>
                       </component>
@@ -319,6 +359,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-13229277"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1123659"/>
                           <text value="Cancelar"/>
                         </properties>
                       </component>
@@ -352,15 +395,17 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <colspec value="fill:243px:noGrow"/>
+            <colspec value="fill:209px:noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:169px:noGrow"/>
-            <colspec value="left:95dlu:noGrow"/>
+            <colspec value="fill:276px:noGrow"/>
+            <colspec value="left:176dlu:noGrow"/>
             <constraints>
               <tabbedpane title="Empleado"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="empty">
+              <size top="8" left="16" bottom="8" right="16"/>
+            </border>
             <children>
               <component id="3830a" class="javax.swing.JLabel" binding="codigoEmpleadoLbl">
                 <constraints>
@@ -445,7 +490,7 @@
               </component>
               <component id="78f26" class="com.github.lgooddatepicker.components.DatePicker" binding="fechaContratacionDP">
                 <constraints>
-                  <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties/>
@@ -470,6 +515,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Añadir"/>
                 </properties>
               </component>
@@ -479,6 +527,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -488,6 +539,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-13229277"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1123659"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -516,6 +570,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-8037541"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1"/>
                           <text value="Aceptar"/>
                         </properties>
                       </component>
@@ -525,6 +582,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-13229277"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1123659"/>
                           <text value="Cancelar"/>
                         </properties>
                       </component>
@@ -554,16 +614,18 @@
             <rowspec value="center:max(d;4px):noGrow"/>
             <rowspec value="top:4dlu:noGrow"/>
             <rowspec value="center:max(d;4px):noGrow"/>
-            <colspec value="fill:235px:noGrow"/>
+            <colspec value="fill:209px:noGrow"/>
             <colspec value="fill:max(d;4px):noGrow"/>
             <colspec value="left:4dlu:noGrow"/>
-            <colspec value="fill:185px:noGrow"/>
-            <colspec value="fill:166px:noGrow"/>
+            <colspec value="fill:300px:noGrow"/>
+            <colspec value="fill:287px:noGrow"/>
             <constraints>
               <tabbedpane title="Cliente"/>
             </constraints>
             <properties/>
-            <border type="none"/>
+            <border type="empty">
+              <size top="8" left="16" bottom="8" right="16"/>
+            </border>
             <children>
               <component id="50f37" class="javax.swing.JLabel" binding="nombreClienteLbl">
                 <constraints>
@@ -657,6 +719,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Añadir"/>
                 </properties>
               </component>
@@ -666,6 +731,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-13229277"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1123659"/>
                   <text value="Eliminar"/>
                 </properties>
               </component>
@@ -675,6 +743,9 @@
                   <forms defaultalign-horz="false"/>
                 </constraints>
                 <properties>
+                  <background color="-8037541"/>
+                  <borderPainted value="false"/>
+                  <foreground color="-1"/>
                   <text value="Modificar"/>
                 </properties>
               </component>
@@ -689,8 +760,8 @@
                   <grid id="f8ed3" layout-manager="FormLayout">
                     <rowspec value="center:d:noGrow"/>
                     <colspec value="fill:94px:noGrow"/>
-                    <colspec value="left:25dlu:noGrow"/>
-                    <colspec value="fill:max(d;4px):noGrow"/>
+                    <colspec value="left:11dlu:noGrow"/>
+                    <colspec value="fill:94px:noGrow"/>
                     <constraints>
                       <card name="Card1"/>
                     </constraints>
@@ -703,6 +774,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-8037541"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1"/>
                           <text value="Aceptar"/>
                         </properties>
                       </component>
@@ -712,6 +786,9 @@
                           <forms defaultalign-horz="false"/>
                         </constraints>
                         <properties>
+                          <background color="-13229277"/>
+                          <borderPainted value="false"/>
+                          <foreground color="-1123659"/>
                           <text value="Cancelar"/>
                         </properties>
                       </component>

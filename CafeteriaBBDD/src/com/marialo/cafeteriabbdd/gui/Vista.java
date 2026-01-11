@@ -25,6 +25,7 @@ public class Vista extends JFrame {
     JLabel pagoLbl;
     JPanel cardPanelDetallesPedido;
     JTable detallesTabla;
+    JButton eliminarPedidoButton;
 
     // ======== PRODUCTOS ========
     JPanel JPanelProducto;
@@ -108,7 +109,7 @@ public class Vista extends JFrame {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.pack();
 
-        this.setSize(new Dimension(this.getWidth(), this.getHeight() + 100));
+        //this.setSize(new Dimension(this.getWidth(), this.getHeight()));
         this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);

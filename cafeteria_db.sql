@@ -8,7 +8,8 @@ nombre varchar(50) not null,
 apellidos varchar(150),
 email varchar(150) not null unique,
 fecha_registro date not null default (current_date),
-telefono varchar(20)
+telefono varchar(20),
+activo boolean default true
 );
 --
 create table if not exists empleado (
@@ -17,7 +18,8 @@ codigo_empleado varchar(50) not null,
 nombre varchar(50) not null,
 apellidos varchar(150) not null,
 dni varchar(10) unique not null,
-fecha_contratacion date not null
+fecha_contratacion date not null,
+activo boolean default true
 );
 --
 create table if not exists producto (
@@ -25,7 +27,8 @@ id_producto int primary key auto_increment,
 codigo varchar(20) unique not null,
 nombre varchar(100) not null,
 categoria varchar(50) not null,
-precio decimal(10, 2) not null
+precio decimal(10, 2) not null,
+activo boolean default true
 );
 --
 create table if not exists pedido (
