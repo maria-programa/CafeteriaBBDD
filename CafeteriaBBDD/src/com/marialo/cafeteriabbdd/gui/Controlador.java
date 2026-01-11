@@ -1,6 +1,7 @@
 package com.marialo.cafeteriabbdd.gui;
 
 import com.marialo.cafeteriabbdd.util.Util;
+import com.marialo.cafeteriabbdd.util.Validadores;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -470,6 +471,11 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             return;
         }
 
+        if (!Validadores.validarDNI(vista.dniEmpleadoTxt.getText())) {
+            Util.mensajeError("Por favor, introduzca un DNI válido");
+            return;
+        }
+
         String codigoEmpleado = vista.codigoEmpleadoTxt.getText();
         String nombre = vista.nombreEmpleadoTxt.getText();
         String apellidos = vista.apellidosEmpleadoTxt.getText();
@@ -596,6 +602,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             return;
         }
 
+        if (!Validadores.validarEmail(vista.emailClienteTxt.getText())) {
+            Util.mensajeError("Por favor, introduzca un correo válido.");
+            return;
+        }
         String nombre = vista.nombreClienteTxt.getText();
         String apellidos = vista.apellidosClienteTxt.getText();
         String email = vista.emailClienteTxt.getText();
