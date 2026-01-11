@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CafeteriaBBDD:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1e8e4594-3fa0-4921-b9ca-c2663a075dd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/util/Validadores.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CafeteriaBBDD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CafeteriaBBDD.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafeteria_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/cafeteria_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/marialo/cafeteriabbdd/gui/Modelo.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,12 +52,15 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="260" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CafeteriaMVC/CafeteriaMVC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Koala\Documents\GitHub\CafeteriaBBDD\CafeteriaBBDD\resources" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Koala\Documents\GitHub\CafeteriaBBDD\CafeteriaBBDD" />
       <recent name="C:\Users\Koala\Documents\GitHub\CafeteriaBBDD\CafeteriaBBDD\libs" />
@@ -110,7 +120,8 @@
       <workItem from="1767979963238" duration="37000" />
       <workItem from="1767983178158" duration="595000" />
       <workItem from="1768043250210" duration="7406000" />
-      <workItem from="1768125419462" duration="29540000" />
+      <workItem from="1768125419462" duration="29795000" />
+      <workItem from="1768164284322" duration="1462000" />
     </task>
     <servers />
   </component>

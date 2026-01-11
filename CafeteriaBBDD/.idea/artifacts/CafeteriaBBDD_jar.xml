@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CafeteriaBBDD:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CafeteriaBBDD_jar</output-path>
+    <root id="archive" name="CafeteriaBBDD.jar">
+      <element id="module-output" name="CafeteriaBBDD" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jgoodies-forms-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/LGoodDatePicker-8.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/mysql-connector-java-5.1.44-bin.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+    </root>
+  </artifact>
+</component>

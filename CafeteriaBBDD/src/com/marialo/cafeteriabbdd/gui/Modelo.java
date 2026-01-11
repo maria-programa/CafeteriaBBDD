@@ -1,5 +1,7 @@
 package com.marialo.cafeteriabbdd.gui;
 
+import com.marialo.cafeteriabbdd.main.Principal;
+
 import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
@@ -56,15 +58,21 @@ public class Modelo {
     }
 
     private String leerFichero() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("cafeteria_db.sql")) ;
-        String linea;
-        StringBuilder stringBuilder = new StringBuilder();
-        while ((linea = reader.readLine()) != null) {
-            stringBuilder.append(linea);
-            stringBuilder.append(" ");
-        }
+        try (InputStream input = Principal.class.getResourceAsStream("/cafeteria_db.sql")) {
+            if (input == null) {
+                throw new IOException("No se encontró el archivo armeria_java.sql");
+            }
 
-        return stringBuilder.toString();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            StringBuilder stringBuilder = new StringBuilder();
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                stringBuilder.append(linea);
+                stringBuilder.append(" ");
+            }
+
+            return stringBuilder.toString();
+        }
     }
 
     void desconectar() {
@@ -536,27 +544,22 @@ public class Modelo {
 
     // ========== CONFIGURACIÓN ==========
     private void getPropValues() {
-        InputStream inputStream = null;
-        try {
+        try (InputStream inputStream = Principal.class.getResourceAsStream("/config.properties")) {
+            if (inputStream == null) {
+                System.out.println("No se encontró el archivo config.properties");
+                return;
+            }
+
             Properties prop = new Properties();
-            String propFileName = "config.properties";
-
-            inputStream = new FileInputStream(propFileName);
-
             prop.load(inputStream);
+
             ip = prop.getProperty("ip");
             user = prop.getProperty("user");
             password = prop.getProperty("pass");
             adminPassword = prop.getProperty("admin");
 
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        } finally {
-            try {
-                if (inputStream != null) inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
