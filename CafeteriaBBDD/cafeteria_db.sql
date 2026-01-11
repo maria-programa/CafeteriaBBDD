@@ -48,3 +48,54 @@ subtotal decimal(10, 2) not null,
 foreign key (id_pedido) references pedido(id_pedido),
 foreign key (id_producto) references producto(id_producto)
 );
+--
+delimiter ||
+create function existe_cliente(f_email varchar(150))
+returns bit
+begin
+	declare i int;
+    set i = 0;
+    while (i < (select max(id_cliente) from cliente)) do
+    if ((select email from cliente
+		where id_cliente = (i+1)) like f_email)
+	then return 1;
+    end if;
+    set i = i+1;
+    end while;
+    return 0;
+end; ||
+delimiter ;
+--
+delimiter ||
+create function existe_empleado(f_codigo varchar(50))
+returns bit
+begin
+	declare i int;
+    set i = 0;
+    while (i < (select max(id_empleado) from empleado)) do
+    if ((select codigo_empleado from empleado
+		where id_empleado = (i+1)) like f_codigo)
+	then return 1;
+    end if;
+    set i = i+1;
+    end while;
+    return 0;
+end; ||
+delimiter ;
+--
+delimiter ||
+create function existe_producto(f_codigo varchar(20))
+returns bit
+begin
+	declare i int;
+    set i = 0;
+    while (i < (select max(id_producto) from producto)) do
+    if ((select codigo from producto
+		where id_producto = (i+1)) like f_codigo)
+	then return 1;
+    end if;
+    set i = i+1;
+    end while;
+    return 0;
+end; ||
+delimiter ;

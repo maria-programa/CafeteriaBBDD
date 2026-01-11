@@ -36,7 +36,7 @@ public class Modelo {
         } catch (SQLException sqle) {
             try {
                 conexion = DriverManager.getConnection(
-                        "jdbc:mysql://"+ip+":3306/",user, password);
+                        "jdbc:mysql://" + ip + ":3306/", user, password);
 
                 PreparedStatement statement = null;
 
@@ -158,6 +158,24 @@ public class Modelo {
         return sentencia.executeQuery();
     }
 
+    public boolean existeCliente(String email) {
+        String salesConsult = "SELECT existe_cliente(?)";
+        PreparedStatement function;
+        boolean existeEmail = false;
+
+        try {
+            function = conexion.prepareStatement(salesConsult);
+            function.setString(1, email);
+            ResultSet rs = function.executeQuery();
+            rs.next();
+
+            existeEmail = rs.getBoolean(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return existeEmail;
+    }
+
     // ========== EMPLEADOS ==========
     void insertarEmpleado(String codigoEmpleado, String nombre, String apellidos, String dni, LocalDate fechaContratacion) {
         String sql = "INSERT INTO empleado (codigo_empleado, nombre, apellidos, dni, fecha_contratacion) VALUES (?, ?, ?, ?, ?);";
@@ -242,6 +260,24 @@ public class Modelo {
         return sentencia.executeQuery();
     }
 
+    public boolean existeEmpleado(String codigo) {
+        String salesConsult = "SELECT existe_empleado(?)";
+        PreparedStatement function;
+        boolean existeCodigo = false;
+
+        try {
+            function = conexion.prepareStatement(salesConsult);
+            function.setString(1, codigo);
+            ResultSet rs = function.executeQuery();
+            rs.next();
+
+            existeCodigo = rs.getBoolean(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return existeCodigo;
+    }
+
     // ========== PRODUCTOS ==========
     void insertarProducto(String codigo, String nombre, String categoria, double precio) {
         String sql = "INSERT INTO producto (codigo, nombre, categoria, precio) VALUES (?, ?, ?, ?);";
@@ -323,7 +359,24 @@ public class Modelo {
         return sentencia.executeQuery();
     }
 
-    //TODO
+    public boolean existeProducto(String codigo) {
+        String salesConsult = "SELECT existe_producto(?)";
+        PreparedStatement function;
+        boolean existeCodigo = false;
+
+        try {
+            function = conexion.prepareStatement(salesConsult);
+            function.setString(1, codigo);
+            ResultSet rs = function.executeQuery();
+            rs.next();
+
+            existeCodigo = rs.getBoolean(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return existeCodigo;
+    }
+
     // ========== PEDIDOS ==========
     void insertarPedido(int idCliente, int idEmpleado, LocalDate fechaPedido, double total, String tipoPago) {
         String sql = "INSERT INTO pedido (id_cliente, id_empleado, fecha_pedido, total, tipo_pago) VALUES (?, ?, ?, ?, ?);";

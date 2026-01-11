@@ -153,16 +153,40 @@ public class Vista extends JFrame {
     }
 
     private void setTableModels() {
-        this.dtmPedidos = new DefaultTableModel();
+        this.dtmPedidos = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.pedidosTabla.setModel(dtmPedidos);
+        this.pedidosTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        this.dtmProductos = new DefaultTableModel();
+        this.dtmProductos = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.productosTabla.setModel(dtmProductos);
+        this.productosTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        this.dtmEmpleados = new DefaultTableModel();
+        this.dtmEmpleados = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.empleadosTabla.setModel(dtmEmpleados);
+        this.empleadosTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        this.dtmClientes = new DefaultTableModel();
+        this.dtmClientes = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         this.clientesTabla.setModel(dtmClientes);
+        this.clientesTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 }
