@@ -176,6 +176,25 @@ public class Modelo {
         return existeEmail;
     }
 
+    public int obtenerIDCliente(String email) {
+        String sql = "SELECT id_cliente FROM cliente WHERE email = ?";
+        PreparedStatement sentencia = null;
+        int id = 0;
+
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, email);
+            ResultSet rs = sentencia.executeQuery();
+            rs.next();
+
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
     // ========== EMPLEADOS ==========
     void insertarEmpleado(String codigoEmpleado, String nombre, String apellidos, String dni, LocalDate fechaContratacion) {
         String sql = "INSERT INTO empleado (codigo_empleado, nombre, apellidos, dni, fecha_contratacion) VALUES (?, ?, ?, ?, ?);";
@@ -278,6 +297,25 @@ public class Modelo {
         return existeCodigo;
     }
 
+    public int obtenerIDEmpleado(String codigoEmpleado) {
+        String sql = "SELECT id_empleado FROM empleado WHERE codigo_empleado = ?";
+        PreparedStatement sentencia = null;
+        int id = 0;
+
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, codigoEmpleado);
+            ResultSet rs = sentencia.executeQuery();
+            rs.next();
+
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
     // ========== PRODUCTOS ==========
     void insertarProducto(String codigo, String nombre, String categoria, double precio) {
         String sql = "INSERT INTO producto (codigo, nombre, categoria, precio) VALUES (?, ?, ?, ?);";
@@ -378,17 +416,16 @@ public class Modelo {
     }
 
     // ========== PEDIDOS ==========
-    void insertarPedido(int idCliente, int idEmpleado, LocalDate fechaPedido, double total, String tipoPago) {
-        String sql = "INSERT INTO pedido (id_cliente, id_empleado, fecha_pedido, total, tipo_pago) VALUES (?, ?, ?, ?, ?);";
+    void insertarPedido(int idCliente, int idEmpleado, double total, String tipoPago) {
+        String sql = "INSERT INTO pedido (id_cliente, id_empleado, total, tipo_pago) VALUES (?, ?, ?, ?);";
         PreparedStatement sentencia = null;
 
         try {
             sentencia = conexion.prepareStatement(sql);
             sentencia.setInt(1, idCliente);
             sentencia.setInt(2, idEmpleado);
-            sentencia.setDate(3, Date.valueOf(fechaPedido));
-            sentencia.setDouble(4, total);
-            sentencia.setString(5, tipoPago);
+            sentencia.setDouble(3, total);
+            sentencia.setString(4, tipoPago);
             sentencia.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -411,20 +448,47 @@ public class Modelo {
                 "p.tipo_pago as 'Tipo Pago' " +
                 "FROM pedido p " +
                 "JOIN cliente c ON p.id_cliente = c.id_cliente " +
-                "JOIN empleado e ON p.id_empleado = e.id_empleado " +
-                "ORDER BY p.fecha_pedido DESC;";
+                "JOIN empleado e ON p.id_empleado = e.id_empleado";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         return sentencia.executeQuery();
     }
 
+    public int obtenerUltimoIdPedido() {
+        String sql = "SELECT LAST_INSERT_ID()";
+        try (Statement stmt = conexion.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
     // ========== DETALLES PEDIDO ==========
+    void insertarDetallePedido(int idPedido, int idProducto, int cantidad, double subtotal) {
+        String sql = "INSERT INTO detalle_pedido (id_pedido, id_producto, cantidad, subtotal) VALUES (?, ?, ?, ?)";
+        PreparedStatement sentencia = null;
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setInt(1, idPedido);
+            sentencia.setInt(2, idProducto);
+            sentencia.setInt(3, cantidad);
+            sentencia.setDouble(4, subtotal);
+            sentencia.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     ResultSet consultarDetallesPedido(int idPedido) throws SQLException {
-        String sql = "SELECT p.nombre as producto, " +
-                "d.cantidad, p.precio, d.subtotal " +
+        String sql = "SELECT p.nombre as 'Producto', " +
+                "d.cantidad as 'Cantidad', p.precio as 'Precio', d.subtotal as 'Subtotal'" +
                 "FROM detalle_pedido d " +
                 "JOIN producto p ON d.id_producto = p.id_producto " +
-                "WHERE d.id_pedido = ? " +
-                "ORDER BY d.id_detalle;";
+                "WHERE d.id_pedido = ? ";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, idPedido);
         return sentencia.executeQuery();

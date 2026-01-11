@@ -17,6 +17,7 @@ import java.util.Vector;
 public class Controlador implements ActionListener, ItemListener, ListSelectionListener, WindowListener {
     private Modelo modelo;
     private Vista vista;
+    private DetallesPedido detalles;
 
     public Controlador(Modelo modelo, Vista vista) {
         this.modelo = modelo;
@@ -26,11 +27,13 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         setOptions();
         addActionListeners(this);
         addWindowListeners(this);
+        configurarTablaPedidos();
         refrescarTodo();
 
         vista.cardPanelProducto.setVisible(false);
         vista.cardPanelEmpleado.setVisible(false);
         vista.cardPanelCliente.setVisible(false);
+        //vista.cardPanelDetallesPedido.setVisible(false);
     }
 
     private void refrescarTodo() {
@@ -74,6 +77,9 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.cancelarProductoButton.addActionListener(listener);
         vista.cancelarProductoButton.setActionCommand("cancelarProducto");
 
+        vista.empezarPedidoButton.addActionListener(listener);
+        vista.empezarPedidoButton.setActionCommand("empezarPedido");
+
         vista.optionDialog.btnOpcionesGuardar.addActionListener(listener);
         vista.optionDialog.btnOpcionesGuardar.setActionCommand("guardarOpciones");
         vista.itemOpciones.addActionListener(listener);
@@ -115,6 +121,9 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 vista.optionDialog.dispose();
                 vista.dispose();
                 new Controlador(new Modelo(), new Vista());
+                break;
+            case "empezarPedido":
+                empezarPedido();
                 break;
             case "annadirProducto":
                 altaProducto();
@@ -162,6 +171,106 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
                 eliminarCliente();
                 break;
         }
+    }
+
+    // ========= PEDIDOS =========
+    private void empezarPedido() {
+        DetallesPedido dialog = new DetallesPedido(vista, "Nuevo pedido");
+        cargarProductosEnDialogo(dialog);
+
+        dialog.annadirProductoButton.addActionListener(e -> {
+            ProductoComboItem item = (ProductoComboItem) dialog.comboProductos.getSelectedItem();
+            if (item != null) {
+                int cantidad = (int) dialog.cantidadSpinner.getValue();
+                double subtotal = item.getPrecio() * cantidad;
+                dialog.annadirFilaTemporal(item.toString(), cantidad, item.getPrecio(), subtotal);
+            }
+        });
+
+        dialog.finalizarPedidoButton.addActionListener(e -> {
+            guardarPedido(dialog);
+            dialog.dispose();
+        });
+
+        dialog.setVisible(true);
+    }
+
+    private void cargarProductosEnDialogo(DetallesPedido dialog) {
+        dialog.comboProductos.removeAllItems();
+        try {
+            ResultSet rs = modelo.consultarProductos();
+            while (rs.next()) {
+                String nombre = rs.getString("Nombre");
+                double precio = rs.getDouble("Precio");
+                int id = rs.getInt("ID");
+                dialog.comboProductos.addItem(new ProductoComboItem(id, nombre, precio));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void guardarPedido(DetallesPedido dialog) {
+        String codigoEmpleado = vista.comboEmpleado.getSelectedItem().toString().split(" ")[0];
+        int idEmpleado = modelo.obtenerIDEmpleado(codigoEmpleado);
+        String emailCliente = vista.comboCliente.getSelectedItem().toString().split(" - ")[1];
+        int idCliente = modelo.obtenerIDCliente(emailCliente);
+        double total = dialog.getTotalTemporal();
+        modelo.insertarPedido(idCliente, idEmpleado, total, vista.comboPago.getSelectedItem().toString());
+
+        int idPedido = modelo.obtenerUltimoIdPedido();
+        for (int i = 0; i < dialog.modeloTablaTemporal.getRowCount(); i++) {
+            String productoTexto = (String) dialog.modeloTablaTemporal.getValueAt(i, 0);
+            int cantidad = (int) dialog.modeloTablaTemporal.getValueAt(i, 1);
+            double precio = (double) dialog.modeloTablaTemporal.getValueAt(i, 2);
+            double subtotal = (double) dialog.modeloTablaTemporal.getValueAt(i, 3);
+
+            String idStr = productoTexto.split(" - ")[0];
+            int idProducto = Integer.parseInt(idStr);
+
+            modelo.insertarDetallePedido(idPedido, idProducto, cantidad, subtotal);
+        }
+        refrescarPedidos();
+    }
+
+    private void configurarTablaPedidos() {
+        vista.pedidosTabla.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) { // Doble click
+                    int fila = vista.pedidosTabla.getSelectedRow();
+                    if (fila != -1) {
+                        mostrarDetallesPedido(fila);
+                    }
+                }
+            }
+        });
+    }
+
+    private void mostrarDetallesPedido(int filaSeleccionada) {
+        try {
+            int idPedido = (int) vista.dtmPedidos.getValueAt(filaSeleccionada, 0);
+            vista.detallesTabla.setModel(tableModelDetalles(modelo.consultarDetallesPedido(idPedido)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private DefaultTableModel tableModelDetalles(ResultSet rs) throws SQLException {
+        ResultSetMetaData metaData = rs.getMetaData();
+
+        Vector<String> nombreColumnas = new Vector<>();
+        int numeroColumnas = metaData.getColumnCount();
+
+        for (int columna = 1; columna <= numeroColumnas; columna++) {
+            nombreColumnas.add(metaData.getColumnLabel(columna));
+        }
+
+        Vector<Vector<Object>> data = new Vector<>();
+        setDataVector(rs, numeroColumnas, data);
+
+        vista.dtmDetalles.setDataVector(data, nombreColumnas);
+        return vista.dtmDetalles;
     }
 
     // ========= PRODUCTOS =========
@@ -559,8 +668,6 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
     private void refrescarProductos()  {
         try {
             vista.productosTabla.setModel(tableModelProductos(modelo.consultarProductos()));
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -588,7 +695,8 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             vista.comboEmpleado.removeAllItems();
 
             for (int i = 0; i < vista.dtmEmpleados.getRowCount(); i++) {
-                vista.comboEmpleado.addItem(vista.dtmEmpleados.getValueAt(i, 1));
+                vista.comboEmpleado.addItem(vista.dtmEmpleados.getValueAt(i, 1) + " - " + vista.dtmEmpleados.getValueAt(i, 3)
+                    + ", " + vista.dtmEmpleados.getValueAt(i, 2));
             }
         } catch (SQLException e) {
             e.printStackTrace();

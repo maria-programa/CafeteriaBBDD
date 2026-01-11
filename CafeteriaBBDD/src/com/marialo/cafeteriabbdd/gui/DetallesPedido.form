@@ -30,7 +30,7 @@
           <text value="Producto:"/>
         </properties>
       </component>
-      <component id="a4ae0" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="a4ae0" class="javax.swing.JComboBox" binding="comboProductos">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <forms/>
@@ -46,7 +46,7 @@
           <text value="Cantidad:"/>
         </properties>
       </component>
-      <component id="87357" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+      <component id="87357" class="javax.swing.JSpinner" binding="cantidadSpinner">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false"/>
@@ -61,7 +61,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="fcd14" class="javax.swing.JTable" binding="table1" default-binding="true">
+          <component id="fcd14" class="javax.swing.JTable" binding="detallePedidoTabla">
             <constraints/>
             <properties/>
           </component>

@@ -23,6 +23,8 @@ public class Vista extends JFrame {
     JLabel empleadoComboLbl;
     JLabel clienteComboLbl;
     JLabel pagoLbl;
+    JPanel cardPanelDetallesPedido;
+    JTable detallesTabla;
 
     // ======== PRODUCTOS ========
     JPanel JPanelProducto;
@@ -83,6 +85,7 @@ public class Vista extends JFrame {
     DefaultTableModel dtmProductos;
     DefaultTableModel dtmEmpleados;
     DefaultTableModel dtmClientes;
+    DefaultTableModel dtmDetalles;
 
     // ======== MENU BAR ========
     JMenuItem itemOpciones;
@@ -170,6 +173,15 @@ public class Vista extends JFrame {
         };
         this.pedidosTabla.setModel(dtmPedidos);
         this.pedidosTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        this.dtmDetalles = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        this.detallesTabla.setModel(dtmDetalles);
+        this.detallesTabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         this.dtmProductos = new DefaultTableModel() {
             @Override
