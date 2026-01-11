@@ -7,17 +7,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Vector;
 
 public class Controlador implements ActionListener, ItemListener, ListSelectionListener, WindowListener {
     private Modelo modelo;
     private Vista vista;
-    boolean refrescar;
 
     public Controlador(Modelo modelo, Vista vista) {
         this.modelo = modelo;
@@ -28,6 +27,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         addActionListeners(this);
         addWindowListeners(this);
         refrescarTodo();
+
+        vista.cardPanelProducto.setVisible(false);
+        vista.cardPanelEmpleado.setVisible(false);
+        vista.cardPanelCliente.setVisible(false);
     }
 
     private void refrescarTodo() {
@@ -44,6 +47,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.modificarClienteButton.setActionCommand("editarCliente");
         vista.eliminarClienteButton.addActionListener(listener);
         vista.eliminarClienteButton.setActionCommand("eliminarCliente");
+        vista.aceptarClienteButton.addActionListener(listener);
+        vista.aceptarClienteButton.setActionCommand("aceptarCliente");
+        vista.cancelarClienteButton.addActionListener(listener);
+        vista.cancelarClienteButton.setActionCommand("cancelarCliente");
 
         vista.annadirEmpleadoButton.addActionListener(listener);
         vista.annadirEmpleadoButton.setActionCommand("annadirEmpleado");
@@ -51,6 +58,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.modificarEmpleadoButton.setActionCommand("editarEmpleado");
         vista.eliminarEmpleadoButton.addActionListener(listener);
         vista.eliminarEmpleadoButton.setActionCommand("eliminarEmpleado");
+        vista.aceptarEmpleadoButton.addActionListener(listener);
+        vista.aceptarEmpleadoButton.setActionCommand("aceptarEmpleado");
+        vista.cancelarEmpleadoButton.addActionListener(listener);
+        vista.cancelarEmpleadoButton.setActionCommand("cancelarEmpleado");
 
         vista.annadirProductoButton.addActionListener(listener);
         vista.annadirProductoButton.setActionCommand("annadirProducto");
@@ -58,6 +69,10 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.modificarProductoButton.setActionCommand("editarProducto");
         vista.eliminarProductoButton.addActionListener(listener);
         vista.eliminarProductoButton.setActionCommand("eliminarProducto");
+        vista.aceptarProductoButton.addActionListener(listener);
+        vista.aceptarProductoButton.setActionCommand("aceptarProducto");
+        vista.cancelarProductoButton.addActionListener(listener);
+        vista.cancelarProductoButton.setActionCommand("cancelarProducto");
 
         vista.optionDialog.btnOpcionesGuardar.addActionListener(listener);
         vista.optionDialog.btnOpcionesGuardar.setActionCommand("guardarOpciones");
@@ -104,17 +119,44 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
             case "annadirProducto":
                 altaProducto();
                 break;
+            case "editarProducto":
+                editarProducto();
+                break;
+            case "aceptarProducto":
+                aceptarProducto();
+                break;
+            case "cancelarProducto":
+                cancelarProducto();
+                break;
             case "eliminarProducto":
                 eliminarProducto();
                 break;
             case "annadirEmpleado":
                 altaEmpleado();
                 break;
+            case "editarEmpleado":
+                editarEmpleado();
+                break;
+            case "aceptarEmpleado":
+                aceptarEmpleado();
+                break;
+            case "cancelarEmpleado":
+                cancelarEmpleado();
+                break;
             case "eliminarEmpleado":
                 eliminarEmpleado();
                 break;
             case "annadirCliente":
                 altaCliente();
+                break;
+            case "editarCliente":
+                editarCliente();
+                break;
+            case "aceptarCliente":
+                aceptarCliente();
+                break;
+            case "cancelarCliente":
+                cancelarCliente();
                 break;
             case "eliminarCliente":
                 eliminarCliente();
@@ -127,10 +169,24 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         crearProducto(false);
     }
 
+    private void aceptarProducto() {
+        crearProducto(true);
+        vista.cardPanelProducto.setVisible(false);
+        actualizarBotonesProducto(true);
+    }
+
+    private void cancelarProducto() {
+        Util.mensajeInfo("Acción cancelada.");
+        vista.productosTabla.clearSelection();
+        vista.cardPanelProducto.setVisible(false);
+        actualizarBotonesProducto(true);
+        borrarCamposProducto();
+    }
+
     private void crearProducto(boolean editando) {
         if (camposVaciosProducto()) {
             return;
-        } else if (modelo.existeProducto(vista.codigoProductoTxt.getText())) {
+        } else if (modelo.existeProducto(vista.codigoProductoTxt.getText()) && !editando) {
             Util.mensajeError("Ya existe un producto con el código: " + vista.codigoProductoTxt.getText());
             vista.productosTabla.clearSelection();
             return;
@@ -157,7 +213,12 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
             refrescarProductos();
             borrarCamposProducto();
-            Util.mensajeInfo("Producto añadido con éxito");
+
+            if (editando) {
+                Util.mensajeInfo("Producto actualizado con éxito");
+            } else {
+                Util.mensajeInfo("Producto añadido con éxito");
+            }
 
         } catch (NumberFormatException ex) {
             Util.mensajeError("El precio ha de ser un número válido");
@@ -180,9 +241,36 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
     private void borrarCamposProducto() {
         vista.codigoProductoTxt.setText("");
-        vista.comboCategoria.setSelectedIndex(1);
+        vista.comboCategoria.setSelectedIndex(0);
         vista.nombreProductoTxt.setText("");
         vista.precioProductoTxt.setText("");
+    }
+
+    private void editarProducto() {
+        int filaSeleccionada = vista.productosTabla.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            Util.mensajeError("Por favor seleccione un producto para editar.");
+            return;
+        }
+
+        cargarDatosProducto(filaSeleccionada);
+        actualizarBotonesProducto(false);
+        vista.cardPanelProducto.setVisible(true);
+    }
+
+    private void cargarDatosProducto(int productoSeleccionado) {
+        vista.codigoProductoTxt.setText(String.valueOf(vista.productosTabla.getValueAt(productoSeleccionado, 1)));
+        vista.comboCategoria.setSelectedItem(String.valueOf(vista.productosTabla.getValueAt(productoSeleccionado, 3)));
+        vista.nombreProductoTxt.setText(String.valueOf(vista.productosTabla.getValueAt(productoSeleccionado, 2)));
+        vista.precioProductoTxt.setText(String.valueOf(vista.productosTabla.getValueAt(productoSeleccionado, 4)));
+
+        vista.codigoProductoTxt.setEnabled(false);
+    }
+
+    private void actualizarBotonesProducto(boolean visible) {
+        vista.annadirProductoButton.setVisible(visible);
+        vista.modificarProductoButton.setVisible(visible);
+        vista.eliminarProductoButton.setVisible(visible);
     }
 
     private void eliminarProducto() {
@@ -209,10 +297,24 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         crearEmpleado(false);
     }
 
+    private void aceptarEmpleado() {
+        crearEmpleado(true);
+        vista.cardPanelEmpleado.setVisible(false);
+        actualizarBotonesEmpleado(true);
+    }
+
+    private void cancelarEmpleado() {
+        Util.mensajeInfo("Acción cancelada.");
+        vista.empleadosTabla.clearSelection();
+        vista.cardPanelEmpleado.setVisible(false);
+        actualizarBotonesEmpleado(true);
+        borrarCamposEmpleado();
+    }
+
     private void crearEmpleado(boolean editando) {
         if (camposVaciosEmpleado()) {
             return;
-        } else if (modelo.existeEmpleado(vista.codigoEmpleadoTxt.getText())) {
+        } else if (modelo.existeEmpleado(vista.codigoEmpleadoTxt.getText()) && !editando) {
             Util.mensajeError("Ya existe un empleado con el código: " + vista.codigoEmpleadoTxt.getText());
             vista.empleadosTabla.clearSelection();
             return;
@@ -233,6 +335,12 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
         refrescarEmpleados();
         borrarCamposEmpleado();
+
+        if (editando) {
+            Util.mensajeInfo("Empleado actualizado con éxito");
+        } else {
+            Util.mensajeInfo("Empleado añadido con éxito");
+        }
     }
 
     private boolean camposVaciosEmpleado() {
@@ -263,6 +371,34 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.fechaContratacionDP.setText("");
     }
 
+    private void editarEmpleado() {
+        int filaSeleccionada = vista.empleadosTabla.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            Util.mensajeError("Por favor seleccione un empleado para editar.");
+            return;
+        }
+
+        cargarDatosEmpleado(filaSeleccionada);
+        actualizarBotonesEmpleado(false);
+        vista.cardPanelEmpleado.setVisible(true);
+    }
+
+    private void cargarDatosEmpleado(int empleadoSeleccionado) {
+        vista.codigoEmpleadoTxt.setText(String.valueOf(vista.empleadosTabla.getValueAt(empleadoSeleccionado, 1)));
+        vista.nombreEmpleadoTxt.setText(String.valueOf(vista.empleadosTabla.getValueAt(empleadoSeleccionado, 2)));
+        vista.apellidosEmpleadoTxt.setText(String.valueOf(vista.empleadosTabla.getValueAt(empleadoSeleccionado, 3)));
+        vista.dniEmpleadoTxt.setText(String.valueOf(vista.empleadosTabla.getValueAt(empleadoSeleccionado, 4)));
+        vista.fechaContratacionDP.setDate((Date.valueOf(String.valueOf(vista.empleadosTabla.getValueAt(empleadoSeleccionado, 5)))).toLocalDate());
+
+        vista.codigoEmpleadoTxt.setEnabled(false);
+    }
+
+    private void actualizarBotonesEmpleado(boolean visible) {
+        vista.annadirEmpleadoButton.setVisible(visible);
+        vista.modificarEmpleadoButton.setVisible(visible);
+        vista.eliminarEmpleadoButton.setVisible(visible);
+    }
+
     private void eliminarEmpleado() {
         int filaSeleccionada = vista.empleadosTabla.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -287,10 +423,24 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         crearCliente(false);
     }
 
+    private void aceptarCliente() {
+        crearCliente(true);
+        vista.cardPanelCliente.setVisible(false);
+        actualizarBotonesCliente(true);
+    }
+
+    private void cancelarCliente() {
+        Util.mensajeInfo("Acción cancelada.");
+        vista.productosTabla.clearSelection();
+        vista.cardPanelCliente.setVisible(false);
+        actualizarBotonesCliente(true);
+        borrarCamposCliente();
+    }
+
     private void crearCliente(boolean editando) {
         if (camposVaciosCliente()) {
             return;
-        } else if (modelo.existeCliente(vista.emailClienteTxt.getText())) {
+        } else if (modelo.existeCliente(vista.emailClienteTxt.getText()) && !editando) {
             Util.mensajeError("Ya existe un cliente con el correo: " + vista.emailClienteTxt.getText());
             vista.clientesTabla.clearSelection();
             return;
@@ -310,6 +460,12 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
 
         refrescarClientes();
         borrarCamposCliente();
+
+        if (editando) {
+            Util.mensajeInfo("Cliente actualizado con éxito");
+        } else {
+            Util.mensajeInfo("Cliente añadido con éxito");
+        }
     }
 
     private boolean camposVaciosCliente() {
@@ -328,6 +484,32 @@ public class Controlador implements ActionListener, ItemListener, ListSelectionL
         vista.apellidosClienteTxt.setText("");
         vista.emailClienteTxt.setText("");
         vista.telefonoClienteTxt.setText("");
+    }
+
+    private void editarCliente() {
+        int filaSeleccionada = vista.clientesTabla.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            Util.mensajeError("Por favor seleccione un cliente para editar.");
+            return;
+        }
+
+        cargarDatosCliente(filaSeleccionada);
+        actualizarBotonesCliente(false);
+        vista.cardPanelCliente.setVisible(true);
+
+    }
+
+    private void cargarDatosCliente(int clienteSeleccionado) {
+        vista.nombreClienteTxt.setText(String.valueOf(vista.clientesTabla.getValueAt(clienteSeleccionado, 1)));
+        vista.apellidosClienteTxt.setText(String.valueOf(vista.clientesTabla.getValueAt(clienteSeleccionado, 2)));
+        vista.emailClienteTxt.setText(String.valueOf(vista.clientesTabla.getValueAt(clienteSeleccionado, 3)));
+        vista.telefonoClienteTxt.setText(String.valueOf(vista.clientesTabla.getValueAt(clienteSeleccionado, 5)));
+    }
+
+    private void actualizarBotonesCliente(boolean visible) {
+        vista.annadirClienteButton.setVisible(visible);
+        vista.modificarClienteButton.setVisible(visible);
+        vista.eliminarClienteButton.setVisible(visible);
     }
 
     private void eliminarCliente() {

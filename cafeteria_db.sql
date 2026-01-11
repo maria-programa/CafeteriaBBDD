@@ -90,7 +90,7 @@ begin
 	declare i int;
     set i = 0;
     while (i < (select max(id_producto) from producto)) do
-    if ((select codio from producto
+    if ((select codigo from producto
 		where id_producto = (i+1)) like f_codigo)
 	then return 1;
     end if;

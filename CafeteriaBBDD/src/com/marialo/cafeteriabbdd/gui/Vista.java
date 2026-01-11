@@ -38,6 +38,9 @@ public class Vista extends JFrame {
     JLabel categoriaLbl;
     JLabel nombreProductoLbl;
     JLabel precioLbl;
+    JPanel cardPanelProducto;
+    JButton aceptarProductoButton;
+    JButton cancelarProductoButton;
 
     // ======== EMPLEADOS ========
     JPanel JPanelEmpleado;
@@ -55,6 +58,9 @@ public class Vista extends JFrame {
     JLabel apellidosEmpleadoLbl;
     JLabel dniLbl;
     JLabel fechaContratacionLbl;
+    JPanel cardPanelEmpleado;
+    JButton aceptarEmpleadoButton;
+    JButton cancelarEmpleadoButton;
 
     // ======== CLIENTES ========
     JPanel JPanelCliente;
@@ -68,6 +74,9 @@ public class Vista extends JFrame {
     JButton eliminarClienteButton;
     JLabel nombreClienteLbl;
     JLabel emailClienteLbl;
+    JPanel cardPanelCliente;
+    JButton aceptarClienteButton;
+    JButton cancelarClienteButton;
 
     // ======== TABLAS ========
     DefaultTableModel dtmPedidos;
